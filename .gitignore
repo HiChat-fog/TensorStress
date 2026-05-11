@@ -11,5 +11,4 @@ venv/
 .DS_Store
 Thumbs.db
 *.nc
-*.png
-*.jpg
+# *.png  # allow example images

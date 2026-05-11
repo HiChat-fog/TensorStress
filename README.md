@@ -9,6 +9,10 @@
 
 A domain-neutral toolkit for stress tensor computation, Coulomb failure analysis, and physics-constrained ensemble regression. Designed for computational geomechanics but applicable to any stress-field modeling problem.
 
+<p align="center">
+  <img src="examples/beachball_grid.png" width="600" alt="Focal mechanism beachballs">
+</p>
+
 ---
 
 ## Why This Exists
@@ -37,6 +41,11 @@ mt = mt_from_sdr(strike=229, dip=33, rake=138)  # 3x3 symmetric matrix
 # Decompose into 5 basis mechanisms for linear superposition
 coeffs = basis_mt_decomposition(229, 33, 138)
 # Any double-couple = sum(coeff_i * BASIS_MT_i)
+
+# Beachball visualization
+from tensorstress.beachball import plot_beachball, plot_beachball_grid
+plot_beachball(strike=229, dip=33, rake=138)
+plot_beachball_grid([(229,33,138), (45,60,-90), (0,90,0)], n_cols=3)
 ```
 
 ### 2. Coulomb Failure Stress (`cfs.py`)
@@ -171,6 +180,7 @@ CFS on canonical receiver types (MPa):
 ```
 tensorstress/
 ├── moment_tensor.py      # SDR→MT, basis decomposition, receiver geometry
+├── beachball.py          # Focal mechanism visualization (equal-area projection)
 ├── cfs.py                # Analytical CFS + Green's function superposition
 ├── weighted_ensemble.py  # Multi-target weighted XGBoost with physical constraints
 ├── audit.py              # 6-dimension ML model audit framework
